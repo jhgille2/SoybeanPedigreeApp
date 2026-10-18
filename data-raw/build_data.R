@@ -10,6 +10,8 @@
 ##   lines.csv      one row per individual with PI number, synonyms,
 ##                  comments, and parentage flags
 ##   grin_traits.csv GRIN evaluations joined to lines by PI number
+##   pedigree_expanded.csv  explicit pedigree with every intermediate
+##                  cross (F1, BC1, ...) as its own row; see R/pedigree.R
 ##   notation_profile.txt  summary of pedigree notation, for checking
 ##                  each new data release
 ##################################################
@@ -38,7 +40,10 @@ grin_traits <- lines |>
   select(individual, pi_number) |>
   inner_join(grin, by = "pi_number")
 
+pedigree <- order_pedigree(expand_pedigree(parentage))
+
 dir.create("data", showWarnings = FALSE)
+readr::write_csv(pedigree, "data/pedigree_expanded.csv", na = "")
 readr::write_csv(parentage, "data/parentage.csv", na = "")
 readr::write_csv(lines, "data/lines.csv", na = "")
 readr::write_csv(grin_traits, "data/grin_traits.csv", na = "")
@@ -51,6 +56,9 @@ capture.output({
   cat("\nParent name tokens by type:\n")
   print(profile$token_types)
   cat("\nLines with GRIN evaluations:", nrow(grin_traits), "\n")
+  cat("Expanded pedigree rows:", nrow(pedigree), "\n")
+  print(table(pedigree$type))
+  cat("Pedigrees repaired from malformed strings:", sum(pedigree$repaired), "\n")
 }, file = "data/notation_profile.txt")
 
 message("Wrote ", nrow(parentage), " parentage rows, ",

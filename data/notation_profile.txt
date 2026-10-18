@@ -16,3 +16,8 @@ ambiguous      dose      line   unknown
         9      1454     27842      4631 
 
 Lines with GRIN evaluations: 1599 
+Expanded pedigree rows: 42494 
+
+  cross founder    self unknown 
+  22317    4489   15295     393 
+Pedigrees repaired from malformed strings: 120 
