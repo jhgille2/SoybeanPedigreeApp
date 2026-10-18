@@ -1,5 +1,19 @@
 # Soybean Pedigree App
-Shiny app for visualizing soybean pedigrees. For data processing, see [this repository](https://github.com/jhgille2/SoybasePedigreeVisualization).
+Shiny app for exploring soybean pedigrees from SoyBase. It combines this app with the scripts in [SoybasePedigreeVisualization](https://github.com/jhgille2/SoybasePedigreeVisualization).
+
+## Running the app
+
+```
+Rscript -e 'shiny::runApp()'
+```
+
+Packages: shiny, bslib, visNetwork, DT, dplyr, tidyr, purrr, stringr, readr, igraph (and testthat for the tests). Shiny loads everything in `R/` before `app.R`.
+
+- **Pedigree**: search a line by name, PI number or synonym; choose how many generations to show; hover a line for SoyBase notes and links, double-click to re-centre. "Show intermediate crosses" draws every F1 and backcross plant implied by the pedigree; off, named lines link straight to their named parents. Below the graph: a text pedigree in Purdy notation, COP of every line in the view with the selected line, all lines descended from it, and GRIN traits. The table downloads as CSV.
+- **Coefficient of parentage**: COP matrix for any set of lines, picked, pasted, or uploaded as a file; downloads as CSV.
+- `?line=Williams%2082` in the address opens the app on that line.
+
+The 2021 app is still in `PedigreeNetwork/` for comparison.
 
 ## Data pipeline (in progress)
 
