@@ -1,0 +1,18 @@
+source: https://github.com/soybase/parentage
+commit: main
+fetched: 2026-10-18 15:23:40 UTC
+
+List of 6
+ $ individuals         : int 18255
+ $ with_parents        : int 15298
+ $ nested_parent_fields: int 2384
+ $ slash_parent_fields : int 7
+ $ ambiguous_tokens    : chr [1:2] "Manchu 3" "Pagoda 2"
+ $ expanded_bc_rows    : int 27
+
+Parent name tokens by type:
+types
+ambiguous      dose      line   unknown 
+        9      1454     27842      4631 
+
+Lines with GRIN evaluations: 1599 
